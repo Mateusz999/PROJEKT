@@ -1,0 +1,187 @@
+<head> <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+
+<style>
+  *{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+  }
+    p {
+       margin: 5% 30% 0 30%;
+    }
+
+      table{
+        margin-bottom:  0px;
+        border-collapse: collapse;
+      }
+    #EditField, #addingField{
+      border: 2px solid black;
+      background-color: white;
+      position: absolute;
+      top: 25%;
+      left: 25%;
+      height: 45%;
+      padding:1%;
+      width: 50%;
+     background-image: radial-gradient(circle, rgb(43,44,46)0%,
+                    rgb(25,25,25)93%);
+    border-radius:  8px;
+    box-shadow: 5px 5px 10px black;
+    }
+
+    #EditField > input, #addingField > input{
+      position: relative;
+  
+
+       border-radius:10px;
+       font-size: 1.4rem;
+       border: 2px solid black;
+
+
+      align-content: center;
+      font-size: 1.8em;
+      
+
+    }
+    .functional{
+      color: white;
+      width: 42%;
+      display: inline;
+      top: 70px;
+      margin-left: 5%;
+  
+
+  }
+
+ 
+    .oneLine{
+      margin-left:5%;
+      height: 14%;
+      width: 42%;
+      display: inline;
+      margin-top:10px;
+    }
+
+    .regular{
+      margin-left:5%;
+      margin-top:10px;
+      height: 14%;
+      width: 90%;
+      display:block;
+    }
+    input[type=button]{
+     margin-top:10%;
+    }
+
+    
+
+    h2 {
+      color:black
+    }
+
+  
+
+</style>
+
+</head>
+<body>
+
+  <input type="month"  id="dateConst">
+  <input type="submit" value="wybierz" id="sub"> 
+<div class="page">  
+<div class="table ">
+    <h2 class="text-center font-weight-bold "> Ogłoszenia</h2>
+    <table class="table">
+      <thead>
+        <tr >
+          <th scope="col">data</th>
+          <th scope="col">czas</th>
+          <th scope="col">intencja</th>
+          <th scope="col">opis</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% advert.map( (advert)  =>{ %> 
+          
+         
+        <tr  class="<%=advert.completed%>" id="<%= advert._id%>">
+      
+          <th  scope="row "><%= advert.completed %></th>
+          <td> <%= advert.time %></td>
+          <td><%= advert.title %></td>
+          <td><%= advert.description %></td>
+          
+          <td><button onclick="return false"  class="btn btn-outline-success edit-link">edytuj</button></td>
+          <td><button  class="btn btn-outline-danger delete-link">usuń</button></td>
+
+        </tr>   
+       
+        <% }) %> 
+      </tbody>
+    </table>
+    <p  id="addItem" class="btn btn-outline-primary d-flex justify-content-center w-20">Dodaj następne ogłoszenie parafialne</p>
+    </div>
+   
+
+  </div>
+  
+  <Script>
+       
+    var select = document.getElementById('dateConst');
+
+    var selectButton = document.getElementById("sub")
+   var elements = document.body.querySelector("table")
+        .childNodes[3].childNodes;
+
+  var remove = document.getElementById("remove");
+
+  
+    var el = document.body.querySelectorAll("tr")
+    selectButton.addEventListener("click", () =>{
+       
+        
+       if(select.value.length == 0) {
+        alert("Wprowadź dane!")
+
+      
+
+       }
+        for(i=1;i<el.length;i++){ 
+
+            if(el[i].className.slice(0,7) == select.value.slice(0,7)){
+                
+                el[i].style.display = "table-row"
+               
+            }else if(el[i].className.slice(0,7) != select.value.slice(0,7)){
+                el[i].style.display = "none"
+            }
+            }
+    
+    }
+
+    )
+
+ 
+  </Script>
+    <form id="EditField"  style="display: none" onsubmit="event.preventDefault()" method="post" action="#" >
+      <input name="title"  class="regular" type="text" placeholder="intencja" required>
+      <input name="time"  pattern="^\d{2}:\d{2}$" class="oneLine"type="text"  required>
+      <input name="completed"  class="oneLine" type="date"  required>
+      <input name="description" class="regular" type="text"  placeholder="opis" required>
+      <input class="btn btn-outline-success mt-1  functional " id="saveButton"type="submit" value="zapisz">
+      <input class="btn btn-outline-danger mt-1  exit functional " value="wyjdź">
+    </form>
+
+
+    <form id="AddingField"  style="display: none" onsubmit="event.preventDefault()" method="post" action="#" >
+      <input name="title"  class="regular" type="text" placeholder="intencja" required>
+      <input name="time" placeholder="00:00" pattern="^\d{2}:\d{2}$" class="oneLine"type="text" required >
+      <input name="completed"  class="oneLine" type="date" required >
+      <input name="description"  class="regular" type="text" placeholder="opis" required>
+      <input class="btn btn-outline-success mt-1   functional "  id="AddButton"type="submit" value="zapisz">
+      <input class="btn btn-outline-danger mt-1 exit functional " value="wyjdź">
+    </form>
+
+    <script src="/js/delete.js"></script>
+    <script src="/js/edit.js"></script>
+    <script src="/js/addArticle.js"></script>
+</body>

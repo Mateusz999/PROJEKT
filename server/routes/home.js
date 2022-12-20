@@ -3,9 +3,21 @@ const router = express.Router()
 
 const pages_url = 'pages'
 
-router.get('/', (req,res) => {
-    res.render(pages_url + '/home.ejs')
+router.get('/', async(req,res) => {
+  const db = req.app.locals.db
+  const posts = await db.collection("Posts")
+  .find()
+  .toArray()
+  .then( (result) => {
+    res.render(pages_url + '/home.ejs', {
+      post: result
+    })
+
+  })
+  
 })
+
+
 router.get('/ogloszenia', async(req,res) => {
 
     const db = req.app.locals.db
@@ -85,4 +97,21 @@ router.get('/ogloszenia/time', async(req,res) => {
       })
     })
 })
+
+router.get('/:id', (req, res) => {
+  const db = req.app.locals.db
+  let id = req.params.id
+  const ObjectId = require('mongodb').ObjectID
+  
+  db.collection('Posts')
+      .findOne( { _id: ObjectId(id) } )
+      .then( (result) => {
+          res.render(pages_url+ '/home_details.ejs',{
+              detail: result
+             
+          })
+      }).catch((error) => {
+          console.log("error")
+      })
+    })
 module.exports = router

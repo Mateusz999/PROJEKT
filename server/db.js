@@ -11,6 +11,7 @@ module.exports = function(app){
     app.locals.db = db
 
     app.locals.advertCollection = db.collection("advert")
+    app.locals.postCollection = db.collection("Posts")
 
 }).catch((error) => { console.log(error)})
 

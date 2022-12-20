@@ -1,0 +1,71 @@
+<div class="main-content text-center">
+    <h4 class=" mt-2">Parafia Świętego Jerzego w Domaszkowicach</h2>
+      <div id="topCarousel" data-ride="carousel" class="mt-5  carousel slide">
+        <ol class="carousel-indicators">
+            <li data-target="#topCarousel" data-slide-to="0"></li>
+            <li data-target="#topCarousel" data-slide-to="1"></li>
+            <li data-target="#topCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item rounded ad1 active">
+                <div class="carousel-caption text-light">
+                    <h3>Widok parafi z góry</h3>
+                </div>
+            </div>
+            <div class="carousel-item rounded ad2">
+                <div class="carousel-caption text-light">
+                    <h4>Nabożeństwo różańcowe</h4>
+
+                    <div class="data-caption">
+                        19 luty
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item rounded ad3">
+                <div class="carousel-caption text-light">
+                    <h4>Integracja parafian</h4>
+
+                    <div class="data-caption d-none d-sm-block">
+                        15 kwiecień
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#topCarousel" type="button" data-slide="prev"
+          class="carousel-control-prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Poprzedni</span>
+        </a>
+        <a href="#topCarousel" type="button" data-slide="next"
+          class="carousel-control-next bg">
+            <span class="carousel-control-next-icon " aria-hidden="true"></span>
+            <span class="sr-only">Następny</span>
+        </a>
+    </div>
+    </h4>
+
+   
+    <div class="row mt-3">
+        
+        <%  for(var i = 0; i< post.length; i++) {%>
+      <div class="col-sm-4 col-md-3">
+          <div class="card">
+              <img src="<%=post[i].img%>" alt="" class="card-img-top">
+              <div class="card-body">
+                  <h5 class="card-title"><%=post[i].title%></h5>
+                  <a href="<%= post[i]._id %>" class="btn btn-primary">Czytaj więcej</a>
+              </div>
+          </div>
+      </div>
+
+
+<% }%>
+
+
+
+
+  </div>
+    </div>
+
+
+

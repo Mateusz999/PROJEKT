@@ -3,6 +3,92 @@ const router = express.Router()
 
 const pages_url = 'pages'
 
+
+
+router.get('/ogloszenia', async(req,res) => {
+
+    const db = req.app.locals.db
+    
+
+  
+    db.collection('Advert')
+    const advert = await db.collection("Advert").aggregate(
+        [
+            {
+              '$sort': {
+                'completed':1
+              }
+            }
+          ])
+    .toArray()
+    .then( (result) => {
+
+     
+        res.render('pages' +'/ogloszenia.ejs', {
+            advert: result,
+           
+
+        })
+        
+    })
+})
+
+router.get('/ogloszenia', async(req,res) => {
+
+    const db = req.app.locals.db
+    
+
+  
+    db.collection('Advert')
+    const advert = await db.collection("Advert").aggregate(
+        [
+            {
+              '$sort': {
+                'completed':1
+              }
+            }
+          ])
+    .toArray()
+    .then( (result) => {
+
+     
+        res.render('pages' +'/ogloszenia.ejs', {
+            advert: result,
+           
+
+        })
+        
+    })
+})
+
+router.get('/admin', async(req,res) =>
+{
+
+    const db = req.app.locals.db
+   
+    const advert = await db.collection("Advert").aggregate(
+        [
+            {
+              '$sort': {
+                'completed':1
+              }
+            }
+          ]
+    ).toArray()
+    .then( (result) =>{
+       
+        res.render('pages' +'/admin.ejs', {
+            advert: result
+
+        })
+    })
+  
+})
+
+router.get('/kontakt', (req,res) => {
+   res.render('pages' + '/kontakt.ejs')
+})
+
 router.get('/', async(req,res) => {
   const db = req.app.locals.db
   const posts = await db.collection("Posts")
@@ -17,86 +103,6 @@ router.get('/', async(req,res) => {
   
 })
 
-
-router.get('/ogloszenia', async(req,res) => {
-
-    const db = req.app.locals.db
-    
-
-  
-    db.collection('Advert')
-    const advert = await db.collection("Advert").aggregate(
-        [
-            {
-              '$sort': {
-                'completed':1
-              }
-            }
-          ])
-    .toArray()
-    .then( (result) => {
-
-     
-        res.render('pages' +'/ogloszenia.ejs', {
-            advert: result,
-           
-
-        })
-        
-    })
-})
-
-router.get('/ogloszenia', async(req,res) => {
-
-    const db = req.app.locals.db
-    
-
-  
-    db.collection('Advert')
-    const advert = await db.collection("Advert").aggregate(
-        [
-            {
-              '$sort': {
-                'completed':1
-              }
-            }
-          ])
-    .toArray()
-    .then( (result) => {
-
-     
-        res.render('pages' +'/ogloszenia.ejs', {
-            advert: result,
-           
-
-        })
-        
-    })
-})
-
-
-router.get('/ogloszenia/time', async(req,res) => {
-
-  const db = req.app.locals.db
-
-  
-  db.collection('Advert')
-  const advert = await db.collection("Advert").aggregate(
-    [
-      {
-          '$sort': {
-            'completed': 1
-          }
-      }
-    ])
-    .toArray()
-    .then( (result) => {
-
-      res.render('pages'+'/ogloszenia_time.ejs', {
-        advert: result
-      })
-    })
-})
 
 router.get('/:id', (req, res) => {
   const db = req.app.locals.db
@@ -114,4 +120,28 @@ router.get('/:id', (req, res) => {
           console.log("error")
       })
     })
+
+    router.get('/admin', async(req,res) =>
+{
+
+    const db = req.app.locals.db
+   
+    const advert = await db.collection("Advert").aggregate(
+        [
+            {
+              '$sort': {
+                'completed':1
+              }
+            }
+          ]
+    ).toArray()
+    .then( (result) =>{
+       
+        res.render('pages' +'/admin.ejs', {
+            advert: result
+
+        })
+    })
+  
+})
 module.exports = router

@@ -1,0 +1,22 @@
+.info{
+  
+    border-radius:20px;
+    background-color: white;
+    color: red;
+    text-align: center;
+    padding: 10% 0 12% 0;
+    position: absolute;
+    top:35%;
+    left:25%;
+    width:50%;
+    height:5%;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.3em;
+    display:none;
+
+  }
+
+  .table{
+    font-size: 0.9em
+  }

@@ -1,34 +1,14 @@
 <head>
   <style>
-    .info{
-  
-      border-radius:20px;
-      background-color: white;
-      color: red;
-      text-align: center;
-      padding: 10% 0 12% 0;
-      position: absolute;
-      top:35%;
-      left:25%;
-      width:50%;
-      height:5%;
-      font-weight: bold;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 1.3em;
-      display:none;
-
-    }
-
-    .table{
-      font-size: 0.9em
-    }
+   
+   
   </style>
 </head>
-
+<link href='/css/table.css' rel='stylesheet' type="text/css">
 <div class="table">
    
    
-  <input type="month"  id="dateConst">
+  <input type="month" id="dateConst">
   <input type="submit" value="wybierz" id="sub">
   <input type="button"  value="drukuj" id="printButton">
 
@@ -48,11 +28,11 @@
         
       
          for(var i =0; i < advert.length; i++) {
-          
+            
              %> 
             
          
-        <tr class='<%=advert[i].completed%>''>
+        <tr class='<%=advert[i].completed%>'>
           <th scope="row"><%= advert[i].completed %></th>
           <td><%= advert[i].time%></td>
           <td><%= advert[i].title %></td>
@@ -65,50 +45,5 @@
       </tbody>
     </table>
     <div class="info border-danger">Wprowadź dane!</div>
-    <Script>
-
-      var printButton = document.getElementById("printButton");
-      var select = document.getElementById('dateConst');
-      var selectButton = document.getElementById("sub")
-      var elements = document.body.querySelector("table")
-          .childNodes[3].childNodes;
-      var remove = document.getElementById("remove");
-      var el = document.body.querySelectorAll("tr")
-      printButton.addEventListener("click", () =>{
-
-        window.print();
-})
-      selectButton.addEventListener("click", () =>{
-         
-       
-          
-         if(select.value.length == 0) {
-          var element1 = document.querySelector(".info")
-          var tab = document.querySelector("table")
-
-          element1.style.display = "block";
-
-          setTimeout(()=>{
-
-          element1.style.display = "none";
-          },2000)
-
-         }
-          for(i=1;i<el.length;i++){ 
-
-              if(el[i].className.slice(0,7) == select.value.slice(0,7)){
-                  
-                  el[i].style.display = "table-row"
-                 
-              }else if(el[i].className.slice(0,7) != select.value.slice(0,7)){
-                  el[i].style.display = "none"
-              }
-              }
-      
-      }
-
-      )
-
-   
-    </Script>
+<script src="/js/advertSort.js"></script>
     </div>

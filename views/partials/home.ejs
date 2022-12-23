@@ -1,3 +1,9 @@
+<head>
+    <style>
+ 
+    </style>
+</head>
+
 <div class="main-content text-center">
     <h4 class=" mt-2">Parafia Świętego Jerzego w Domaszkowicach</h2>
       <div id="topCarousel" data-ride="carousel" class="mt-5  carousel slide">
@@ -48,15 +54,18 @@
     <div class="row mt-3">
         
         <%  for(var i = 0; i< post.length; i++) {%>
-      <div class="col-sm-4 col-md-3">
+         
+      <div class="col-sm-4 col-md-3 cower">
           <div class="card">
+ 
               <img src="<%=post[i].img%>" alt="" class="card-img-top">
               <div class="card-body">
                   <h5 class="card-title"><%=post[i].title%></h5>
-                  <a href="<%= post[i]._id %>" class="btn btn-primary">Czytaj więcej</a>
+                  <a href="<%= post[i]._id %>" class="btn btn-outline-primary">Czytaj więcej</a>
               </div>
           </div>
-      </div>
+
+    </div>
 
 
 <% }%>

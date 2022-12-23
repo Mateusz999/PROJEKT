@@ -1,29 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-router.get('/', async(req,res) =>
-{
 
-    const db = req.app.locals.db
-   
-    const advert = await db.collection("Advert").aggregate(
-        [
-            {
-              '$sort': {
-                'completed':1
-              }
-            }
-          ]
-    ).toArray()
-    .then( (result) =>{
-       
-        res.render('pages' +'/admin.ejs', {
-            advert: result
-
-        })
-    })
-  
-})
 
 router.delete('/delete', (req,res) => {
 
@@ -108,4 +86,6 @@ router.post('/add', (req,res) => {
         return res.json('Failure')
     } )
 })
+
+
 module.exports = router;
